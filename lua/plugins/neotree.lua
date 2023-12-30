@@ -2,7 +2,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
-      filesystem = { filtered_items = { hide_hidden = false, hide_dotfiles = false } },
+      filesystem = { filtered_items = { hide_hidden = false, hide_dotfiles = false, hide_gitignored = false } },
       event_handlers = {
         {
           event = "file_opened",
