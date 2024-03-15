@@ -3,3 +3,7 @@
 -- Add any additional options here
 
 vim.g.mapleader = ","
+
+local opt = vim.opt
+
+opt.ignorecase = false

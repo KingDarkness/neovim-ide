@@ -8,9 +8,18 @@ local Util = require("lazyvim.util")
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
 local map = Util.safe_keymap_set
+local wk = require("which-key")
 
 map("n", "<TAB>", [[<Cmd>BufferLineCycleNext<CR>]], { desc = "Go next tab" })
 map("n", "<S-TAB>", [[<Cmd>BufferLineCyclePrev<CR>]], { desc = "Go prev tab" })
 map("n", "tt", function()
   require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
 end, { desc = "Explorer NeoTree (cwd)" })
+
+-- Copy
+wk.register({ ["<leader>"] = {
+  y = {
+    name = "Copy",
+  },
+} })
+map("n", "<leader>ya", [[<Cmd> %y+<CR>]], { desc = "Copy All" })
