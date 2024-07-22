@@ -3,6 +3,8 @@
 -- Add any additional options here
 
 vim.g.mapleader = ","
+vim.g.lazyvim_picker = "fzf"
+vim.g.lazyvim_php_lsp = "intelephense"
 
 local opt = vim.opt
 
