@@ -23,11 +23,21 @@ function M.map_key(mode, lhs, rhs, opts)
 end
 
 function M.get_absolute_forder_path()
-  return string.gsub(vim.api.nvim_exec("echo substitute(expand('%:p:h'), getcwd(), '', '')", true), "/", "", 1)
+  return string.gsub(
+    vim.api.nvim_exec2("echo substitute(expand('%:p:h'), getcwd(), '', '')", { output = true })["output"],
+    "/",
+    "",
+    1
+  )
 end
 
 function M.get_absolute_path()
-  return string.gsub(vim.api.nvim_exec([[echo substitute(expand('%"d'), getcwd(), '', '')]], true), "/", "", 1)
+  return string.gsub(
+    vim.api.nvim_exec2([[echo substitute(expand('%"d'), getcwd(), '', '')]], { output = true })["output"],
+    "/",
+    "",
+    1
+  )
 end
 
 function M.isMacOs()
@@ -88,7 +98,7 @@ end
 function M.visualSearch()
   local query = M.getVisualSelection()
   query = vim.fn.substitute(query, end_of_line, [[\\n]], "g")
-  vim.api.nvim_exec([[:/]] .. query, false)
+  vim.api.nvim_exec2([[:/]] .. query, false)
 end
 
 function M.getVisualSelection()
