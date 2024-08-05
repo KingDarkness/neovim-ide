@@ -23,11 +23,11 @@ function M.map_key(mode, lhs, rhs, opts)
 end
 
 function M.get_absolute_forder_path()
-  return vim.api.nvim_exec("echo substitute(expand('%:p:h'), getcwd(), '', '')", true)
+  return string.gsub(vim.api.nvim_exec("echo substitute(expand('%:p:h'), getcwd(), '', '')", true), "/", "", 1)
 end
 
 function M.get_absolute_path()
-  return vim.api.nvim_exec([[echo substitute(expand('%"d'), getcwd(), '', '')]], true)
+  return string.gsub(vim.api.nvim_exec([[echo substitute(expand('%"d'), getcwd(), '', '')]], true), "/", "", 1)
 end
 
 function M.isMacOs()
