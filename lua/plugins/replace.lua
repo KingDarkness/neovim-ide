@@ -3,60 +3,71 @@ return {
     "folke/which-key.nvim",
     optional = true,
     opts = {
-      defaults = {
-        ["<leader>R"] = {
-          name = "Replace+",
-          mode = { "n" },
-          w = { [[:lua require("utils").normalReplace("all")<CR>]], "Current word in file" },
-          l = { [[:lua require("utils").normalReplace("line")<CR>]], "Current word in line" },
-          n = {
-            [[:lua require("utils").normalReplace("here_next_lines")<CR>]],
-            "Current word from pos to next ? lines",
+      spec = {
+        {
+          { "<leader>R", group = "Replace+" },
+          { "<leader>Rc", group = "With confirm" },
+          {
+            "<leader>Rce",
+            ':lua require("utils").normalReplace("here_to_end", "confirm")<CR>',
+            desc = "Current word from pos to end of file",
           },
-          e = {
-            [[:lua require("utils").normalReplace("here_to_end")<CR>]],
-            "Current word from pos to end of file",
+          {
+            "<leader>Rcl",
+            ':lua require("utils").normalReplace("line", "confirm")<CR>',
+            desc = "Current word in line",
           },
-          c = {
-            name = "With confirm",
-            w = { [[:lua require("utils").normalReplace("all", "confirm")<CR>]], "Current word in file" },
-            l = { [[:lua require("utils").normalReplace("line", "confirm")<CR>]], "Current word in line" },
-            n = {
-              [[:lua require("utils").normalReplace("here_next_lines", "confirm")<CR>]],
-              "Current word from pos to next ? lines",
-            },
-            e = {
-              [[:lua require("utils").normalReplace("here_to_end", "confirm")<CR>]],
-              "Current word from pos to end of file",
-            },
+          {
+            "<leader>Rcn",
+            ':lua require("utils").normalReplace("here_next_lines", "confirm")<CR>',
+            desc = "Current word from pos to next ? lines",
           },
+          { "<leader>Rcw", ':lua require("utils").normalReplace("all", "confirm")<CR>', desc = "Current word in file" },
+          {
+            "<leader>Re",
+            ':lua require("utils").normalReplace("here_to_end")<CR>',
+            desc = "Current word from pos to end of file",
+          },
+          { "<leader>Rl", ':lua require("utils").normalReplace("line")<CR>', desc = "Current word in line" },
+          {
+            "<leader>Rn",
+            ':lua require("utils").normalReplace("here_next_lines")<CR>',
+            desc = "Current word from pos to next ? lines",
+          },
+          { "<leader>Rw", ':lua require("utils").normalReplace("all")<CR>', desc = "Current word in file" },
         },
-        ["<leader>R"] = {
-          name = "Replace+",
+        {
           mode = { "v" },
-          w = { [[:lua require("utils").visualReplace("all")<CR>]], "Current word in file" },
-          l = { [[:lua require("utils").visualReplace("line")<CR>]], "Current word in line" },
-          n = {
-            [[:lua require("utils").visualReplace("here_next_lines")<CR>]],
-            "Current word from pos to next ? lines",
+          { "<leader>R", group = "Replace+" },
+          { "<leader>Rc", group = "With confirm" },
+          {
+            "<leader>Rce",
+            ':lua require("utils").visualReplace("here_to_end", "confirm")<CR>',
+            desc = "Current word from pos to end of file",
           },
-          e = {
-            [[:lua require("utils").visualReplace("here_to_end")<CR>]],
-            "Current word from pos to end of file",
+          {
+            "<leader>Rcl",
+            ':lua require("utils").visualReplace("line", "confirm")<CR>',
+            desc = "Current word in line",
           },
-          c = {
-            name = "With confirm",
-            w = { [[:lua require("utils").visualReplace("all", "confirm")<CR>]], "Current word in file" },
-            l = { [[:lua require("utils").visualReplace("line", "confirm")<CR>]], "Current word in line" },
-            n = {
-              [[:lua require("utils").visualReplace("here_next_lines", "confirm")<CR>]],
-              "Current word from pos to next ? lines",
-            },
-            e = {
-              [[:lua require("utils").visualReplace("here_to_end", "confirm")<CR>]],
-              "Current word from pos to end of file",
-            },
+          {
+            "<leader>Rcn",
+            ':lua require("utils").visualReplace("here_next_lines", "confirm")<CR>',
+            desc = "Current word from pos to next ? lines",
           },
+          { "<leader>Rcw", ':lua require("utils").visualReplace("all", "confirm")<CR>', desc = "Current word in file" },
+          {
+            "<leader>Re",
+            ':lua require("utils").visualReplace("here_to_end")<CR>',
+            desc = "Current word from pos to end of file",
+          },
+          { "<leader>Rl", ':lua require("utils").visualReplace("line")<CR>', desc = "Current word in line" },
+          {
+            "<leader>Rn",
+            ':lua require("utils").visualReplace("here_next_lines")<CR>',
+            desc = "Current word from pos to next ? lines",
+          },
+          { "<leader>Rw", ':lua require("utils").visualReplace("all")<CR>', desc = "Current word in file" },
         },
       },
     },
