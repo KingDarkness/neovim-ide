@@ -1,6 +1,6 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.coding.codeium",
+    "lazyvim.plugins.extras.ai.codeium",
     "lazyvim.plugins.extras.coding.neogen",
     "lazyvim.plugins.extras.editor.fzf",
     "lazyvim.plugins.extras.editor.inc-rename",
@@ -15,7 +15,7 @@
     "lazyvim.plugins.extras.util.dot"
   ],
   "news": {
-    "NEWS.md": "6520"
+    "NEWS.md": "7429"
   },
-  "version": 6
+  "version": 7
 }
