@@ -1,6 +1,7 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
+    version = "^1.0.0",
     opts = {
       ensure_installed = {
         "bash-language-server",
@@ -19,4 +20,5 @@ return {
       },
     },
   },
+  { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
 }
