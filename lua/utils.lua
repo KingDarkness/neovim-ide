@@ -53,8 +53,19 @@ function M.visualReplace(mode, confirm)
     prefix = [[:.,$s/]]
   elseif mode == "here_next_lines" then
     vim.ui.input({ prompt = "Enter number next line: " }, function(lines)
-      prefix = [[:.,+]] .. lines .. [[s/]]
+      if lines then -- Make sure input wasn't cancelled
+        local new_prefix = [[:.,+]] .. lines .. [[s/]]
+        local suffix = [[//g<Left><Left>]]
+        if confirm == "confirm" then
+          suffix = [[//gc<Left><Left><Left>]]
+        end
+        local selected = M.getVisualSelection()
+        local cmd = new_prefix .. selected .. suffix
+        cmd = cmd:gsub("\n", [[\\n]]) -- Escape newlines in the selection
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes(cmd, true, false, true))
+      end
     end)
+    return -- Important: return early since we're handling this case asynchronously
   end
 
   local suffix = [[//g<Left><Left>]]
@@ -63,16 +74,39 @@ function M.visualReplace(mode, confirm)
   end
 
   local selected = M.getVisualSelection()
-  -- vim.fn.feedkeys(vim.api.nvim_replace_termcodes(prefix .. selected .. suffix, true, false, true))
-  vim.fn.feedkeys(
-    vim.fn.substitute(
-      vim.api.nvim_replace_termcodes(prefix .. selected .. suffix, true, false, true),
-      end_of_line,
-      [[\\n]],
-      "g"
-    )
-  )
+  local cmd = prefix .. selected .. suffix
+  cmd = cmd:gsub("\n", [[\\n]]) -- Escape newlines in the selection
+  vim.fn.feedkeys(vim.api.nvim_replace_termcodes(cmd, true, false, true))
 end
+-- function M.visualReplace(mode, confirm)
+--   -- default mode = all
+--   local prefix = [[:%s/]]
+--   if mode == "line" then
+--     prefix = [[:s/]]
+--   elseif mode == "here_to_end" then
+--     prefix = [[:.,$s/]]
+--   elseif mode == "here_next_lines" then
+--     vim.ui.input({ prompt = "Enter number next line: " }, function(lines)
+--       prefix = [[:.,+]] .. lines .. [[s/]]
+--     end)
+--   end
+--
+--   local suffix = [[//g<Left><Left>]]
+--   if confirm == "confirm" then
+--     suffix = [[//gc<Left><Left><Left>]]
+--   end
+--
+--   local selected = M.getVisualSelection()
+--   -- vim.fn.feedkeys(vim.api.nvim_replace_termcodes(prefix .. selected .. suffix, true, false, true))
+--   vim.fn.feedkeys(
+--     vim.fn.substitute(
+--       vim.api.nvim_replace_termcodes(prefix .. selected .. suffix, true, false, true),
+--       end_of_line,
+--       [[\\n]],
+--       "g"
+--     )
+--   )
+-- end
 
 function M.normalReplace(mode, confirm)
   -- default mode = all
@@ -83,8 +117,16 @@ function M.normalReplace(mode, confirm)
     prefix = [[:.,$s/]]
   elseif mode == "here_next_lines" then
     vim.ui.input({ prompt = "Enter number next line: " }, function(lines)
-      prefix = [[:.,+]] .. lines .. [[s/]]
+      if lines then -- Make sure input wasn't cancelled
+        local new_prefix = [[:.,+]] .. lines .. [[s/]]
+        local suffix = [[//g<Left><Left>]]
+        if confirm == "confirm" then
+          suffix = [[//gc<Left><Left><Left>]]
+        end
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes(new_prefix .. [[<C-r><C-w>]] .. suffix, true, false, true))
+      end
     end)
+    return -- Important: return early since we're handling this case asynchronously
   end
 
   local suffix = [[//g<Left><Left>]]
