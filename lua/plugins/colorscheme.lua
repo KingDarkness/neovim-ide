@@ -8,6 +8,11 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = true,
+    config = function()
+      require("bufferline").setup({
+        highlights = require("catppuccin.groups.integrations.bufferline").get_theme(),
+      })
+    end,
     opts = {
       integrations = {
         aerial = true,
