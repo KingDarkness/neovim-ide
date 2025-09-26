@@ -10,7 +10,7 @@ return {
     lazy = true,
     config = function()
       require("bufferline").setup({
-        highlights = require("catppuccin.groups.integrations.bufferline").get_theme(),
+        highlights = require("catppuccin.special.bufferline").get_theme(),
       })
     end,
     opts = {
