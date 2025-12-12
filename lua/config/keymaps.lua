@@ -18,3 +18,7 @@ wk.add({
   { "<leader>y", group = "Copy" },
   { "<leader>ya", [[<Cmd> %y+<CR>]], desc = "Copy All" },
 })
+
+vim.keymap.set({ "n", "t" }, "<c-/>", function()
+  Snacks.terminal()
+end, { desc = "Terminal (cwd)" })
