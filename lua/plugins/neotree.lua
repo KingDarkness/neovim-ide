@@ -11,6 +11,20 @@ return {
           end,
         },
       },
+      window = {
+        mappings = {
+          -- y: Copy CHỈ TÊN FILE (Filename) vào Clipboard
+          ["y"] = {
+            function(state)
+              local node = state.tree:get_node()
+              local filename = node.name -- Lấy tên file/thư mục
+              vim.fn.setreg("+", filename, "c")
+              vim.notify("Copied Filename: " .. filename, vim.log.levels.INFO, { title = "Neo-tree" })
+            end,
+            desc = "Copy Filename to System Clipboard",
+          },
+        },
+      },
     },
   },
 }
