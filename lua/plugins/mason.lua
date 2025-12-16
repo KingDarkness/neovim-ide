@@ -16,6 +16,7 @@ return {
         "stylua",
         "typescript-language-server",
         "json-lsp",
+        "blade-formatter",
       },
     },
   },
