@@ -14,4 +14,9 @@ return {
       },
     },
   },
+  {
+    -- Thêm plugin chuyên biệt cho Blade
+    "jwalton512/vim-blade",
+    ft = "blade",
+  },
 }
