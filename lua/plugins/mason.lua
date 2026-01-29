@@ -17,6 +17,7 @@ return {
         "typescript-language-server",
         "json-lsp",
         "blade-formatter",
+        "vue-language-server",
       },
     },
   },

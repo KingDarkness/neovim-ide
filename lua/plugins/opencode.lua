@@ -15,6 +15,10 @@ return {
     -- Required for `opts.events.reload`.
     vim.o.autoread = true
 
+    require("which-key").add({
+      { "<leader>o", group = "+opencode" },
+    })
+
     -- Recommended/example keymaps.
     vim.keymap.set({ "n", "x" }, "<C-a>", function()
       require("opencode").ask("@this: ", { submit = true })

@@ -5,6 +5,8 @@
 vim.g.mapleader = ","
 vim.g.lazyvim_picker = "fzf"
 vim.g.lazyvim_php_lsp = "intelephense"
+-- Cho phép Neovim chạy file Local Config .nvim.lua
+-- vim.o.exrc = true
 
 local opt = vim.opt
 
