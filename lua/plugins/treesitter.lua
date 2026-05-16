@@ -26,14 +26,6 @@ return {
         "markdown",
         "markdown_inline",
       },
-      languages = {
-        vue = {
-          __default = "// %s",
-          comment = "// %s",
-          css_style = "/* %s */",
-          html = "<!-- %s -->",
-        },
-      },
     },
   },
   {
