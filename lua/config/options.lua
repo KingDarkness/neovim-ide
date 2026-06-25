@@ -11,3 +11,13 @@ vim.o.exrc = true
 local opt = vim.opt
 
 opt.ignorecase = false
+
+-- Automatically start RPC server for mcp-neovim-server
+local mcp_socket = "/tmp/nvim.sock"
+if vim.fn.has("win32") == 0 then
+  -- Clean up socket if left over from a previous crashed session, then start server
+  if vim.fn.filereadable(mcp_socket) == 1 then
+    os.remove(mcp_socket)
+  end
+  pcall(vim.fn.serverstart, mcp_socket)
+end
