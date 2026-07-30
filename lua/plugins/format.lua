@@ -8,7 +8,12 @@ return {
     formatters = {
       pint = {
         condition = function(self, ctx)
-          -- Chỉ dùng pint nếu tìm thấy vendor/bin/pint trong thư mục gốc của project
+          -- Bỏ qua pint nếu file nằm trong thư mục packages/ 
+          -- (lúc này conform sẽ tự động nhường quyền format cho php_cs_fixer)
+          if string.match(ctx.filename, "/packages/") then
+            return false
+          end
+          -- Chỉ dùng pint nếu tìm thấy vendor/bin/pint
           return vim.fs.find({ "vendor/bin/pint" }, { path = ctx.dirname, upward = true })[1] ~= nil
         end,
       },
